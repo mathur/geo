@@ -84,6 +84,10 @@ func longitude(p Point) s1.Angle {
 // The maximum error in the result is 1.5 * dblEpsilon. (This does not
 // include the error of converting degrees, E5, E6, or E7 into radians.)
 func PointFromLatLng(ll LatLng) Point {
+	if !ll.IsValid() {
+		return nil
+	}
+
 	phi := ll.Lat.Radians()
 	theta := ll.Lng.Radians()
 	cosphi := math.Cos(phi)
